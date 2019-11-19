@@ -1,0 +1,285 @@
+$primary_font: 'Crimson Text', serif;
+$secondary_font: 'Quicksand', sans-serif;
+$third_font: 'Staatliches', cursive;
+$primary_color: #f16034;
+$secondary_color: #345da4;
+$white: #ffffff;
+$black: #000000;
+
+$browser-context: 16px;
+
+@function em($pixels, $context: $browser-context) {
+  @return ($pixels / $context) * 1em;
+}
+
+@mixin fontStyle($ff: false, $size: false, $tt: false, $color: false, $ls: false, $weight: false) {
+  @if $ff {font-family: $ff;}
+  @if $size {font-size: $size;}
+  @if $tt {text-transform: $tt;}
+  @if $color {color: $color;}
+  @if $ls {letter-spacing: $ls;}
+  @if $weight {font-weight: $weight;}
+}
+
+%btn {
+    background-color: $primary_color;
+    font-family: $secondary_font;
+    font-weight: 500;
+    width: 100%;
+    color: $white;
+    display: block;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 45px;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: $primary_font;
+  color: $black;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    font-family: $secondary_font;
+    line-height: 1.5;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.main-container {
+    padding: 150px 7% 0;
+}
+
+.btn {
+    @extend %btn;
+}
+
+.main-title {
+    color: $primary_color;
+    font-family: $third_font;
+    letter-spacing: 5px;
+    font-size: em(40px);
+    margin-bottom: 20px;
+}
+
+.section-title {
+  @include fontStyle($size: em(25px), $tt: uppercase, $ls: 1px, $color: $secondary_color);
+  margin-bottom: 25px;
+}
+
+.menu-btn {
+  width: 30px;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+  &__bar {
+    width: 100%;
+    height: 3px;
+    background-color: $secondary_color;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all .3s ease-in-out;
+    &:before,
+    &:after {
+      content: "";
+      width: 100%;
+      height: 3px;
+      position: absolute;
+      background-color: $secondary_color;
+      transition: all .3s ease-in-out;
+    }
+    &:before {
+      top: -9px;
+    }
+    &:after {
+      bottom: -9px;
+    }
+  }
+  &:hover {
+    .menu-btn__bar {
+      &:before {
+        top: 0px;
+      }
+      &:after {
+        bottom: 0px;
+      }
+    }  
+  }
+}
+
+.open-burger {
+  .menu-btn__bar {
+    background-color: $white;
+    &:before,
+    &:after {
+      background-color: $white;
+    }
+    &:before {
+      top: 0px;
+    }
+    &:after {
+      bottom: 0px;
+    }
+  }
+  &:hover {
+    .menu-btn__bar {
+      &:before {
+        top: -9px;
+      }
+      &:after {
+        bottom: -9px;
+      }
+    }  
+  }
+}
+
+.header {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    z-index: 2;
+    transition: all .3s ease-in-out;
+  &--scroll {
+    background-color: $primary_color;
+    .menu-btn__bar {
+      background-color: $white;
+      &:before,
+      &:after {
+        background-color: $white;
+      }
+    }
+  }
+  &__logo {
+    width: 55px;
+    border-radius: 30px;
+    border: 3px solid $white;
+  }
+  &__menu {
+      position: fixed;
+      right: -100%;
+      background-color: $primary_color;
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all .3s ease-in-out;
+  }
+  &__list {
+    text-align: center;
+  }
+  &__item {
+    @include fontStyle($size: em(35px), $ff: $secondary_font);
+    margin-bottom: 25px;
+    &:last-of-type {
+      margin-bottom: 0px;
+    }
+    a {
+      @include fontStyle($color: $white, $weight: 600);
+      transition: all .3s linear;
+      &:hover {
+        opacity: .6;
+      }
+    }
+  }
+  .open-menu {
+    right: 0px;
+  }
+}
+
+.intro-content {
+    
+}
+
+.chacters {
+  background-color: $black;
+  padding: 120px 7% 250px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 40px;
+  &__title{
+    color: $white;
+  }
+  &:before, &:after{
+    content: '';
+    position: absolute;
+  }
+  &:before{
+    border-color: $white transparent;
+    border-style: solid;
+    border-width: 80px 620px 0px 0px;
+    height: 0px;
+    width: 0px;
+    top: 0px;
+    left: 0px;
+  }
+  &:after{
+    border-color: transparent $white;
+    border-style: solid;
+    border-width: 110px 580px 0px 0px;
+    height: 0px;
+    width: 0px;
+    bottom: 0px;
+    left: -80px;
+  }
+  iframe {
+    margin-bottom: 20px;
+  }
+}
+
+.guests {
+  &__container-image {
+    width: 100%;
+    height: 300px;
+    position: relative;
+  }
+  &__image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: grayscale(1);
+    border-bottom: 3px solid $white;
+  }
+  &__name {
+    @include fontStyle($ff: $secondary_font);
+    position: absolute;
+    bottom: 3px;
+    z-index: 1;
+    span{
+      background-color: $primary_color;
+      padding-right: 10px;
+    }
+    &--small-text {
+      font-weight: 400;
+      font-size: em(25px);
+      display: inline-block;
+    }
+    &--big-text{
+      font-weight: 600;
+      font-size: em(40px);
+      display: block;
+    }
+  }
+}

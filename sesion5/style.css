@@ -1,0 +1,17 @@
+body {
+  font-family: Tahoma;
+}
+/* color for all paragraphs */
+
+/* Spacehips div p specificity test */
+.spaceships .primary { 
+    color: darkkhaki; 
+}
+
+.spaceships p {
+    color: grey;
+}
+
+.pink {
+    color: #FF1493;
+}
